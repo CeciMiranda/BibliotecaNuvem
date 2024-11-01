@@ -1,5 +1,13 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: cecim
+  Date: 29/10/2024
+  Time: 18:50
+  To change this template use File | Settings | File Templates.
+--%>
+
 <%@page import="java.sql.SQLException"%>
-<%@ page import="data.biblioteca.Banco" %>
+<%@ page import="data.Banco" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
 <!DOCTYPE html>
@@ -16,17 +24,18 @@
         String senha = request.getParameter("senha");
         Banco b = new Banco();
 
-        if (login != null && senha != null && !login.isEmpty() && !senha.isEmpty() && b.getLogin(login, senha)) {
-            String nome = b.getUsuario(login);
+        String senhaBanco = b.getSenha(login);
+        if (senha.equals(senhaBanco)){
     %>
-    <h1>Bem-vindo :) </h1>
-    <h2>Menu</h2>
-    <ul>
-        <li><a href="cadastrarLivro.jsp">Cadastrar Livro</a></li>
-        <li><a href="consultarLivro.jsp">Consultar Livro</a></li>
-        <li><a href="atualizarLivro.jsp">Atualizar Livro</a></li>
-        <li><a href="deletarLivro.jsp">Deletar Livro</a></li>
+    <h1>Bem-vindo</h1>
+    <h2>Menu Biblioteca 📚 </h2>
+    <ul style="list-style-type: none; padding: 0;">
+        <li><a href="cadastrarLivro.jsp" style="display: inline-block; width: 200px; padding: 10px 0; margin: 5px; background-color: #4CAF50; color: white; text-align: center; text-decoration: none; border-radius: 5px;"> Cadastrar Livro</a></li>
+        <li><a href="consultarLivro.jsp" style="display: inline-block; width: 200px; padding: 10px 0; margin: 5px; background-color: #2196F3; color: white; text-align: center; text-decoration: none; border-radius: 5px;"> Consultar Livro</a></li>
+        <li><a href="atualizarLivro.jsp" style="display: inline-block; width: 200px; padding: 10px 0; margin: 5px; background-color: #FFC107; color: white; text-align: center; text-decoration: none; border-radius: 5px;"> Editar Livro</a></li>
+        <li><a href="deletarLivro.jsp" style="display: inline-block; width: 200px; padding: 10px 0; margin: 5px; background-color: #F44336; color: white; text-align: center; text-decoration: none; border-radius: 5px;"> Deletar Livro</a></li>
     </ul>
+
     <%
     } else {
     %>
@@ -36,5 +45,6 @@
         }
     %>
 </div>
+
 </body>
 </html>
